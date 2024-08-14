@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cart</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <link rel="stylesheet" th:href="@{/css/header_styles.css}" />
+</head>
+<body>
+<div th:insert="~{fragments/user_header :: header}"></div>
+<h1>Cart</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Brand</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cartItem : ${cartItems}" th:attr="data-product-id=${cartItem.product.id}">
+        <td th:text="${cartItem.product.name}">Product Name</td>
+        <td th:text="${cartItem.product.category}">Category</td>
+        <td th:text="${cartItem.product.brand}">Brand</td>
+        <td th:text="${cartItem.product.price}">Price</td>
+        <td th:text="${cartItem.quantity}">Quantity</td>
+        <td>
+            <div class="cart-button-container">
+                <form th:action="@{/user/addToCart/{productId}(productId=${cartItem.product.id})}" method="post">
+                    <button type="submit" th:disabled="${cartItem.product.inStock == 0}">+</button>
+                </form>
+                <form th:action="@{/user/removeFromCart/{productId}(productId=${cartItem.product.id})}" method="get">
+                    <button type="submit">-</button>
+                </form>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<form th:action="@{/user/placeOrder}" method="post">
+    <label for="deliveryAddress">Адрес доставки:</label>
+    <input type="text" id="deliveryAddress" name="deliveryAddress" required>
+    <button type="submit" th:disabled="${#lists.isEmpty(cartItems)}">Заказать</button>
+</form>
+</body>
+</html>

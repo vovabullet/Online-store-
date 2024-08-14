@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add/Edit Product</title>
+    <link rel="stylesheet" th:href="@{/css/form_styles.css}" />
+</head>
+<body>
+<h1 th:text="${product.id == null} ? 'Add Product' : 'Edit Product'">Add Product</h1>
+<form th:action="@{${product.id == null} ? '/admin/saveProduct' : '/admin/updateProduct/' + ${product.id}}" th:object="${product}" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" th:field="*{name}" /><br/>
+    <label for="category">Category:</label>
+    <input type="text" id="category" th:field="*{category}" /><br/>
+    <label for="brand">Brand:</label>
+    <input type="text" id="brand" th:field="*{brand}" /><br/>
+    <label for="price">Price:</label>
+    <input type="number" id="price" th:field="*{price}" step="0.01"/><br/>
+    <label for="inStock">In Stock:</label>
+    <input type="number" id="inStock" th:field="*{inStock}" step="1"/><br/>
+    <button type="submit" th:text="${product.id == null} ? 'Add' : 'Update'">Add</button>
+    <button type="button" class="back-button" onclick="window.location.href='/admin/products'">Back</button>
+</form>
+</body>
+</html>

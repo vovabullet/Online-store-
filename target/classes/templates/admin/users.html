@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin - Users</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <link rel="stylesheet" th:href="@{/css/header_styles.css}" />
+</head>
+<body>
+<div th:insert="~{fragments/admin_header :: header}"></div>
+<h1>Users</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Username</th>
+        <th>Roles</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.username}">Username</td>
+        <td th:text="${user.roles}">Roles</td>
+    </tr>
+    </tbody>
+</table>
+<div class="button-container">
+    <a th:href="@{/admin/users/add}" class="add-button">Add New User</a>
+</div>
+</body>
+</html>

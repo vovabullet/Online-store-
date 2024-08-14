@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" th:href="@{/css/form_styles.css}" />
+</head>
+<body>
+<h1>Register</h1>
+<form th:action="@{/register}" th:object="${user}" method="post" autocomplete="off">
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" th:field="*{username}" autocomplete="new-username" />
+        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error-message"></div>
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" th:field="*{password}" autocomplete="new-password" />
+        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error-message"></div>
+    </div>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" th:field="*{email}" autocomplete="off" />
+        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error-message"></div>
+    </div>
+    <div class="form-group">
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" id="phoneNumber" th:field="*{phoneNumber}" autocomplete="off" />
+        <div th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="error-message"></div>
+    </div>
+    <label for="birthDate">Birth Date:</label>
+    <input type="date" id="birthDate" th:field="*{birthDate}" />
+    <label for="gender">Gender:</label>
+    <select id="gender" th:field="*{gender}">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select>
+    <button type="submit">Register</button>
+    <button type="button" class="back-button" onclick="window.location.href='/login'">Back</button>
+</form>
+</body>
+</html>

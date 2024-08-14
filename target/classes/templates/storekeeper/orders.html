@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Orders</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <link rel="stylesheet" th:href="@{/css/header_styles.css}" />
+</head>
+<body>
+<div th:insert="~{fragments/storekeeper_header :: header}"></div>
+<h1>Orders</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Order ID</th>
+        <th>Delivery Address</th>
+        <th>Status</th>
+        <th>Order Date</th>
+        <th>Items</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${orders}">
+        <td th:text="${order.id}">Order ID</td>
+        <td th:text="${order.deliveryAddress}">Delivery Address</td>
+        <td th:text="${order.status}">Status</td>
+        <td th:text="${#dates.format(order.orderDate, 'dd-MM-yyyy HH:mm')}">Order Date</td>
+        <td>
+            <ul>
+                <li th:each="item : ${order.orderItems}" th:text="${item.product.name} + ' x ' + ${item.quantity}">Item</li>
+            </ul>
+        </td>
+        <td>
+            <form th:action="@{/storekeeper/updateOrderStatus/{orderId}(orderId=${order.id})}" method="post">
+                <label>
+                    <select name="status">
+                        <option value="сборка" th:selected="${order.status == 'сборка'}">Сборка</option>
+                        <option value="в пути" th:selected="${order.status == 'в пути'}">В пути</option>
+                        <option value="доставлен" th:selected="${order.status == 'доставлен'}">Доставлен</option>
+                    </select>
+                </label>
+                <button type="submit">Обновить</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="header">
+    <div class="header">
+        <a th:href="@{/storekeeper/home}">Главная</a>
+        <a th:href="@{/storekeeper/orders}">Заказы</a>
+        <div class="auth-buttons">
+            <a th:href="@{/logout}">Logout</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

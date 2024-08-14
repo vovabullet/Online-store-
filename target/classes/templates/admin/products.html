@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin - Products</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <link rel="stylesheet" th:href="@{/css/header_styles.css}" />
+</head>
+<body>
+<div th:insert="~{fragments/admin_header :: header}"></div>
+<h1>Products</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Brand</th>
+        <th>Price</th>
+        <th>In Stock</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.id}">1</td>
+        <td th:text="${product.name}">Name</td>
+        <td th:text="${product.category}">Category</td>
+        <td th:text="${product.brand}">Brand</td>
+        <td th:text="${product.price}">Price</td>
+        <td th:text="${product.inStock}">In Stock</td>
+        <td>
+            <a th:href="@{/admin/editProduct/{id}(id=${product.id})}" class="edit-button">Edit</a>
+            <a th:href="@{/admin/deleteProduct/{id}(id=${product.id})}" class="delete-button">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div class="button-container">
+    <a th:href="@{/admin/addProduct}" class="add-button">Add New Product</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="header">
+    <div class="header">
+        <a th:href="@{/user/home}">Главная</a>
+        <a th:href="@{/user/products}">Список товаров</a>
+        <a th:href="@{/user/cart}">Корзина</a>
+        <a th:href="@{/user/profile}">Личный кабинет</a>
+        <div class="auth-buttons">
+            <a th:href="@{/logout}">Logout</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
