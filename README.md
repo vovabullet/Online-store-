@@ -79,10 +79,10 @@
 
 ## Диаграммы на языке UML
 
-### 4.1 Диаграмма вариантов использования
+### Диаграмма вариантов использования
 ![image](https://github.com/user-attachments/assets/17c9b182-24ef-4f28-b40e-1dd821ec038c)
 
-### 4.2 Диаграмма классов
+### Диаграмма классов
 ![image](https://github.com/user-attachments/assets/4f8a2939-1d08-4992-b943-46733f999093)
 
 
